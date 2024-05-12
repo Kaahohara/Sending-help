@@ -1,0 +1,9 @@
+FROM maven:3-openjdk-17 AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn dependency:resolve-plugins -nsu -U -f /home/app/pom.xml clean install
+
+FROM openjdk:17-jdk
+COPY --from=build /home/app/target/*.jar donations-api.jar
+EXPOSE 8082
+ENTRYPOINT ["java","-jar","donations-api.jar"]
