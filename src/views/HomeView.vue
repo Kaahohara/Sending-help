@@ -9,7 +9,7 @@
           <p class="subtitulo">LOGIN</p>
           <form @submit.prevent="submitForm">
             <div class="input-group">
-              <input type="text" v-model="loginData.username" placeholder="Username" required>
+              <input type="text" v-model="loginData.login" placeholder="Username" required>
             </div>
             <div class="input-group">
               <input type="password" v-model="loginData.password" placeholder="Password" required>
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       loginData: {
-        username: '',
+        login: '',
         password: ''
       }
     };
