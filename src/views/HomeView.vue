@@ -145,7 +145,7 @@ export default {
           if (doadores.length > 0) { 
             const primeiroDoador = doadores[0]; 
             localStorage.setItem('nome', primeiroDoador.name);
-            this.$router.push('/doador-doacao');
+             window.location.reload();
           } else {
             this.loginMessage = false;
           }
@@ -184,7 +184,7 @@ export default {
         .then(response => {
           console.log(response.data);
           localStorage.setItem('nome', this.doadorData.name);
-          this.$router.push('/doador-doacao');
+          window.location.reload();
 
         })
         .catch(error => {
