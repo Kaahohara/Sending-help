@@ -145,7 +145,7 @@ export default {
           if (doadores.length > 0) { 
             const primeiroDoador = doadores[0]; 
             localStorage.setItem('nome', primeiroDoador.name);
-            window.location.reload();
+            this.$router.push('/doador-doacao');
           } else {
             this.loginMessage = false;
           }
@@ -184,7 +184,7 @@ export default {
         .then(response => {
           console.log(response.data);
           localStorage.setItem('nome', this.doadorData.name);
-          window.location.reload();
+          this.$router.push('/doador-doacao');
 
         })
         .catch(error => {
@@ -194,7 +194,7 @@ export default {
       })
       .catch(error => {
         if (error.response && error.response.status === 400) {
-          this.cadastroMessage = 'e-mail ja cadastrado'; 
+          this.cadastroMessage = 'E-mail ja cadastrado'; 
           }else{
         this.cadastroMessage = 'Tente Novamente';
       }
