@@ -33,7 +33,7 @@
 						Doação
 			</router-link>
 		</li>
-		<li>
+		<li v-if="verificalogado()">
 			<a href="#" @click="logout">Sair</a>
 		</li>
       </ul>
@@ -43,7 +43,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 const name = localStorage.getItem('nome');
-
+function verificalogado(){
+      return !!localStorage.getItem('token');
+    }
 const menuOpen = ref(false);
 function logout(){
 	localStorage.removeItem('token');
