@@ -50,20 +50,20 @@
       </div>
       <div class="lados back-white">
           <div v-if="!hasLogin" class="cadastro-container">
-            <div v-if="!loginMessage">Tente Novamente!</div>
+            {{cadastroMessage}}
             <p class="subtitulo">CADASTRO</p>
             <form @submit.prevent="registerUser">
               <div class="input-group">
                 <input type="text" v-model="doadorData.name" placeholder="Nome" required>
               </div>
               <div class="input-group">
-                <input type="text" v-model="registerData.login" placeholder="Username" required>
+                <input type="email" v-model="registerData.login" placeholder="Username" required>
               </div>
               <div class="input-group">
                 <input type="password" v-model="registerData.password" placeholder="Password" required>
               </div>
               <div class="input-group">
-                <input type="phone" v-model="doadorData.phone" placeholder="Phone" required>
+                <input type="number" v-model="doadorData.phone" placeholder="Phone" required>
               </div>
           
               <button type="submit">Registrar</button>
@@ -75,7 +75,7 @@
             <p class="subtitulo">LOGIN</p>
             <form @submit.prevent="submitForm">
               <div class="input-group">
-                <input type="text" v-model="loginData.login" placeholder="Username" required>
+                <input type="email" v-model="loginData.login" placeholder="Username" required>
               </div>
               <div class="input-group">
                 <input type="password" v-model="loginData.password" placeholder="Password" required>
@@ -112,7 +112,8 @@ export default {
         name:'',
         phone:''
       },
-      loginMessage: null 
+      loginMessage: true,
+      cadastroMessage: null
     };
   },
 
@@ -139,6 +140,7 @@ export default {
           }
         })
         .then(response => {
+          this.loginMessage = null;
           const doadores = response.data.filter(doador => doador.email === this.loginData.login);
           if (doadores.length > 0) { 
             const primeiroDoador = doadores[0]; 
@@ -149,12 +151,10 @@ export default {
           }
         })
         .catch(error => {
-          console.error('Erro na requisição de doadores:', error);
           this.loginMessage = false;
         });
       })
       .catch(error => {
-        console.error('Erro na requisição de login:', error);
         this.loginMessage = false;
       });
     },
@@ -167,10 +167,12 @@ export default {
         }
       })
       .then(response => {
+       
+        this.cadastroMessage = true;
         const authToken = response.data.token;
         const name = response.data.name;
         localStorage.setItem('token', authToken);
-        localStorage.setItem('nome', name);
+    
         this.doadorData.email = this.registerData.login;
         axios.post('http://localhost:8090/doadores', this.doadorData, {
           headers: {
@@ -180,17 +182,23 @@ export default {
           }
         })
         .then(response => {
+          console.log(response.data);
+          localStorage.setItem('nome', this.doadorData.name);
           window.location.reload();
+
         })
         .catch(error => {
-          console.error('Erro na requisição de registro de doador:', error);
-          this.loginMessage = false;
+          
+          this.cadastroMessage = 'Tente Novamente';
         });
       })
       .catch(error => {
-        console.error('Erro na requisição de registro:', error);
-        this.loginMessage = false;
-      });
+        if (error.response && error.response.status === 400) {
+          this.cadastroMessage = 'e-mail ja cadastrado'; 
+          }else{
+        this.cadastroMessage = 'Tente Novamente';
+      }
+    });
     },
 
     toggleForm() {
