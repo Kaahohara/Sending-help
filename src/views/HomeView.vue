@@ -123,7 +123,7 @@ export default {
     },
 
     submitForm() {
-      axios.post('http://localhost:8090/auth/login', this.loginData, {
+      axios.post('http://200.132.38.218:8090/auth/login', this.loginData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*/*'
@@ -132,7 +132,7 @@ export default {
       .then(response => {
         const authToken = response.data.token;
         localStorage.setItem('token', authToken);
-        axios.get('http://localhost:8090/doadores', {
+        axios.get('http://200.132.38.218:8090/doadores', {
           headers: {
             'Content-Type': 'application/json',
             'Accept': '*/*',
@@ -160,7 +160,7 @@ export default {
     },
     
     registerUser() {
-      axios.post('http://localhost:8090/auth/register', this.registerData, {
+      axios.post('http://200.132.38.218:8090/auth/register', this.registerData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*/*'
@@ -174,7 +174,7 @@ export default {
         localStorage.setItem('token', authToken);
     
         this.doadorData.email = this.registerData.login;
-        axios.post('http://localhost:8090/doadores', this.doadorData, {
+        axios.post('http://200.132.38.218:8090/doadores', this.doadorData, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': '*/*',
