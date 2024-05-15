@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '@/axios';
 
 export default {
   data() {
@@ -123,7 +123,7 @@ export default {
     },
 
     submitForm() {
-      axios.post('http://localhost:8090/auth/login', this.loginData, {
+      apiClient.post('/auth/login', this.loginData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*/*'
@@ -132,7 +132,7 @@ export default {
       .then(response => {
         const authToken = response.data.token;
         localStorage.setItem('token', authToken);
-        axios.get('http://localhost:8090/doadores', {
+        apiClient.get('/doadores', {
           headers: {
             'Content-Type': 'application/json',
             'Accept': '*/*',
@@ -160,7 +160,7 @@ export default {
     },
     
     registerUser() {
-      axios.post('http://localhost:8090/auth/register', this.registerData, {
+      apiClient.post('/auth/register', this.registerData, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': '*/*'
@@ -174,7 +174,7 @@ export default {
         localStorage.setItem('token', authToken);
     
         this.doadorData.email = this.registerData.login;
-        axios.post('http://localhost:8090/doadores', this.doadorData, {
+        apiClient.post('/doadores', this.doadorData, {
           headers: {
             'Content-Type': 'application/json',
             'Accept': '*/*',
