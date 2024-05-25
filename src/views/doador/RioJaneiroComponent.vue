@@ -3,17 +3,17 @@
     <div class="categorias">
       <router-link to="/doador-ong-amazonia">
         <Doador-ong-amazonia />
-        <img src="/src/assets/Amazonia.png" alt="amazonia" />
+        <img src="@/assets/Amazonia.png" alt="amazonia" />
         <p>Amazônia</p>
       </router-link>
       <router-link to="/doador-ong-riojaneiro">
         <Doador-ong-riojaneiro />
-        <img src="/src/assets/RioJaneiro.png" alt="RioJaneiro" />
+        <img src="@/assets/RioJaneiro.png" alt="RioJaneiro" />
         <p>Rio de Janeiro</p>
       </router-link>
       <router-link to="/doador-ong-matogrosso">
         <Doador-ong-matogrosso />
-        <img src="/src/assets/MatoGrosso.png" alt="MatoGrosso" />
+        <img src="@/assets/MatoGrosso.png" alt="MatoGrosso" />
         <p>Mato Grosso</p>
       </router-link>
     </div>
@@ -22,7 +22,7 @@
   <div class="containerong">
     <div class="containerong-item">
       <div class="picture">
-        <img src="/src/assets/Amazonia.png" alt="amazonia">
+        <img src="@/assets/Amazonia.png" alt="amazonia">
       </div>  
       <div class="nameong">
         <p>ONG X</p>
@@ -32,7 +32,7 @@
 
     <div class="containerong-item">
       <div class="picture">
-        <img src="/src/assets/Amazonia.png" alt="amazonia">
+        <img src="@/assets/Amazonia.png" alt="amazonia">
       </div>  
       <div class="nameong">
         <p>ONG X</p>
@@ -41,7 +41,7 @@
     </div>
     <div class="containerong-item">
       <div class="picture">
-        <img src="/src/assets/Amazonia.png" alt="amazonia">
+        <img src="@/assets/Amazonia.png" alt="amazonia">
       </div>  
       <div class="nameong">
         <p>ONG X</p>
@@ -52,7 +52,7 @@
       <form action="#">
         <div class="ong-container">
           <div class="lados">
-            <img src="/src/assets/profile.png" style="margin: auto" height="100%" width="80%" alt="profile">
+            <img src="@/assets/profile.png" style="margin: auto" height="100%" width="80%" alt="profile">
             <div class="input-group-ong">
               <input type="text" id="nome" name="nome" placeholder="Nome da ONG:" required>
             </div>
@@ -88,7 +88,7 @@
 
   <div class="cont">
     <div class="lados">
-      <img src="/src/assets/logo.png" width="200px" alt="logo">
+      <img src="@/assets/logo.png" width="200px" alt="logo">
     </div>
     <div class="lados">
       <p>
@@ -100,13 +100,13 @@
       <p>Telefone:55 98783-46655</p>
       <div class="icons">
         <div class="lados">
-          <img src="/src/assets/whats.png" alt="whatsapp">
+          <img src="@/assets/whats.png" alt="whatsapp">
         </div>
         <div class="lados">
-          <img src="/src/assets/instagram.png" alt="instagram">
+          <img src="@/assets/instagram.png" alt="instagram">
         </div>
         <div class="lados">
-          <img src="/src/assets/facebook.png " alt="facebook">
+          <img src="@/assets/facebook.png " alt="facebook">
         </div>
       </div>
     </div>
