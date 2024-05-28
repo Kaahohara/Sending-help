@@ -132,6 +132,7 @@ export default {
       .then(response => {
         const authToken = response.data.token;
         localStorage.setItem('token', authToken);
+       
         apiClient.get('/doadores', {
           headers: {
             'Content-Type': 'application/json',
@@ -140,6 +141,8 @@ export default {
           }
         })
         .then(response => {
+          const ID = response.data.id;
+        localStorage.setItem('ID', ID);
           this.loginMessage = null;
           const doadores = response.data.filter(doador => doador.email === this.loginData.login);
           if (doadores.length > 0) { 
@@ -182,7 +185,7 @@ export default {
           }
         })
         .then(response => {
-          console.log(response.data);
+         
           localStorage.setItem('nome', this.doadorData.name);
           window.location.reload();
 
