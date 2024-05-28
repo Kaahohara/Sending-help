@@ -22,22 +22,22 @@
 
 
       <div class="containerong">
-        <div v-for="ong in ongs" :key="ong.id" class="containerong-item">
-          <div class="picture">
-            <img src='@/assets/Amazonia.png' alt="ongimage">
-          </div>
-          <div class="nameong">
-            <p>{{ ong.nome }}</p>
-            <p>Objetivos: {{ ong.cause }}</p>
-          </div>
+        <div v-for="ong in filteredOngs" :key="ong.id" class="containerong-item">
+        <div class="picture">
+          <img src='@/assets/Amazonia.png' alt="ongimage">
         </div>
+        <div class="nameong">
+          <p>{{ ong.nome }}</p>
+          <p>Objetivos: {{ ong.cause }}</p>
+        </div>
+      </div>
     </div>
   <div v-if="!verificalogado()" class="form-box">
           <div v-if="!hasLogin" >
            
             
             <form @submit.prevent="registerUser">
-              {{cadastroMessage}}
+              <p style="color: red; font-size: large; text-align: center;">{{cadastroMessage}}</p>
         <div class="ong-container">
          <div class="lados">
             <img src="@/assets/profile.png" style="margin: auto" height="60%" width="80%" alt="profile">
@@ -63,8 +63,14 @@
               <input type="text" v-model="ongData.cause" id="cause" name="cause" placeholder="Causa:" required>
             </div>
             <div class="input-group-ong">
-              <input type="text" v-model="ongData.endereco.cidade" id="cidade" name="cidade" placeholder="Cidade:" required>
-            </div>
+          <select v-model="ongData.endereco.cidade" id="cidade" name="cidade" required>
+            <option disabled value="">Selecione uma cidade</option>
+            <option value="Amazonas">Amazonas</option>
+            <option value="Mato Grosso">Mato Grosso</option>
+            <option value="Rio de Janeiro">Rio de Janeiro</option>
+          </select>
+        </div>
+
             <div class="input-group-ong">
               <input type="text" v-model="ongData.endereco.rua" id="rua" name="rua" placeholder="Rua:" required>
             </div>
@@ -163,7 +169,7 @@ export default {
         cidade: '',
         rua: '',
         bairro: '',
-        numero: 0
+        numero: ''
         }
       },
       registerData: {
@@ -175,6 +181,11 @@ export default {
       loginMessage: true,
       cadastroMessage: null
     };
+  },
+  computed: {
+    filteredOngs() {
+      return this.ongs.filter(ong => ong.endereco && ong.endereco.cidade === 'Amazonas');
+    }
   },
   mounted() {
     this.fetchOngs();
@@ -269,13 +280,11 @@ export default {
     });
   
 },
-
-    fetchOngs() {
+fetchOngs() {
       apiClient.get('/ong', {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': '*/*',
-          
+          'Accept': '*/*'
         }
       })
       .then(response => {
@@ -285,7 +294,6 @@ export default {
         console.error('Erro ao buscar ONGs:', error);
       });
     },
-
     getOngImage(ong) {
     
       return  '@/assets/Amazonia.png';
