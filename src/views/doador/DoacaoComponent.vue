@@ -201,15 +201,15 @@ export default {
     registerDonation() {
       if(this.donationData.cidade=='Amazonas'){
         this.donationData.estado='AM',
-        this.donationData.CEP='12345678'
+        this.donationData.cep='12345678'
       }else   
       if(this.donationData.cidade=='RiodeJaneiro'){
         this.donationData.estado='RJ',
-        this.donationData.CEP='44445678'
+        this.donationData.cep='44445678'
       }
       else{
         this.donationData.estado='MG',
-        this.donationData.CEP='876678'
+        this.donationData.cep='876678'
       }
       this.donationData.emissao = new Date();
       this.donationData.previsao = new Date(this.donationData.emissao);

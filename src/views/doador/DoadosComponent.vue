@@ -9,11 +9,11 @@
           <div class="nameong">
             <p>Tipo: {{ donation.tipo }}</p>
             <p>{{ donation.nome }}  {{ donation.quantidade }}</p>
-            <p> Pedido feito no dia:{{ this.donation.emissao.toLocaleDateString() }}</p>
-            <p>Previsão:{{ this.donation.previsao.toLocaleDateString() }}</p>
+            <p> Pedido feito no dia:{{ donation.emissao }}</p>
+            <p>Previsão:{{ donation.previsao }}</p>
             <p>Endereço:{{ donation.endereco.rua }}, nº {{ donation.endereco.numero }}, {{ donation.endereco.cidade }}, cep: {{ donation.endereco.cep }}.  </p>
         
-               </div>
+          </div>
         </div>
       </div>
     
@@ -82,7 +82,7 @@ apiClient.get(`/donation?cpf=${cpf}`, {
     }
   })
   .then(response => {
-
+    
     this.donation = response.data;
   })
   .catch(error => {
