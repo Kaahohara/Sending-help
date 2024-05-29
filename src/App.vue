@@ -1,9 +1,10 @@
 
+
 <template>
-    
+    <div>
         <HeaderNav/>
         <RouterView />
-        <Toaster />
+   </div>
 
 </template>
 

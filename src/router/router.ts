@@ -13,28 +13,37 @@ const router = createRouter({
 			path: '/doador',
 			name: 'Doador',
 			children: [
+				
 				{
-					path: '/doador-ong-amazonia',
-					name: 'Doador-ong-amazonia',
-					component: () => import('@/views/doador/AmazoniaComponent.vue')
+					path: '/doador-pontos',
+					name: 'Doador-pontos',
+					component: () => import('@/views/doador/PontosComponent.vue')
 				},
+				
 				{
-					path: '/doador-ong-matogrosso',
-					name: 'Doador-ong-matogrosso',
-					component: () => import('@/views/doador/MatoGrossoComponent.vue')
-				},
-				{
-					path: '/doador-ong-riojaneiro',
-					name: 'Doador-ong-riojaneiro',
-					component: () => import('@/views/doador/RioJaneiroComponent.vue')
+					path: '/doador-doar',
+					name: 'Doador-doar',
+					component: () => import('@/views/doador/DoacaoComponent.vue')
 				},
 				{
 					path: '/doador-doacao',
 					name: 'Doador-doacao',
-					component: () => import('@/views/doador/DoacaoComponent.vue')
+					component: () => import('@/views/doador/DoadosComponent.vue')
 				},
 			],
 				},
+				{
+					path: '/administrador',
+				name: 'Administrador',
+				children: [
+					
+					{
+						path: '/administrador-pontos',
+						name: 'Administrador-pontos',
+						component: () => import('@/views/administrador/PontosComponent.vue')
+					},
+				]
+				}
 			
 
 	]

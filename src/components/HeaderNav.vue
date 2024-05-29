@@ -19,17 +19,25 @@
   
         <li>
 			<router-link
-						to="/doador-ong-amazonia"
+						to="/doador-pontos"
 					>
-						<Doador-ong-amazonia />
-						ONG'S
+						<Doador-pontos />
+						Pontos de coleta
 			</router-link>
 		</li>
-        <li>
+		<li>
 			<router-link
 						to="/doador-doacao"
 					>
 						<Doador-doacao />
+						Suas Doações
+			</router-link>
+		</li>
+        <li>
+			<router-link
+						to="/doador-doar"
+					>
+						<Doador-doar />
 						Doação
 			</router-link>
 		</li>
@@ -50,6 +58,7 @@ const menuOpen = ref(false);
 function logout(){
 	localStorage.removeItem('token');
 	localStorage.removeItem('nome');
+	localStorage.removeItem('cpf');
 	window.location.reload()
 }
 function toggleMenu() {
