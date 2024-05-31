@@ -108,9 +108,6 @@
                 <input type="text" v-model="donationData.quantidade" id="quantidade" name="quantidade" placeholder="Quantidade" required>
               </div>
               <div class="input-group-ong">
-                <input type="text" v-model="donationData.nome" id="nome" name="nome" placeholder="Nome do item" required>
-              </div>
-              <div class="input-group-ong">
               <select v-model="donationData.endereco.cidade" id="cidade" name="cidade" required>
                 <option disabled value="">Selecione uma cidade</option>
                 <option value="Amazonas">Amazonas</option>
@@ -127,11 +124,8 @@
               <div class="input-group-ong">
                 <input type="text" v-model="donationData.endereco.rua" id="Rua" name="Rua" placeholder="Rua" required>
               </div>
-             
-              <div class="input-group-ong">
-                <input type="radio" id="coleta" v-model="donationData.coleta" name="coleta" value="true"><br>
-                <label for="coleta">Deseja que a doação seja coletada</label>
-              </div>
+
+              
               <button type="submit">Enviar</button>
             </form>
           </div>
@@ -167,12 +161,10 @@ export default {
       },
   
       donationData: {
-        nome: '',
         tipo: '',
         cpf:'',
         previsao:'',
         emissao:'',
-        coleta: false,
         quantidade: 0,
         endereco:{
         cep: '',
