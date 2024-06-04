@@ -94,7 +94,7 @@
               <p class="subtitulo">
                 Cadastre sua Doação
               </p>
-               <div class="input-group-ong">
+              <div class="input-group-ong">
               <select  v-model="donationData.tipo" id="tipo" name="tipo" required>
                 <option disabled value="">Selecione um tipo de doação</option>
                 <option value="Alimentos">Alimentos não perecíveis</option>
@@ -103,11 +103,7 @@
                 <option value="Higiene">Higiene</option>
               </select>
             </div>
-
-              <div class="input-group-ong">
-                <input type="text" v-model="donationData.quantidade" id="quantidade" name="quantidade" placeholder="Quantidade" required>
-              </div>
-              <div class="input-group-ong">
+            <div class="input-group-ong">
               <select v-model="donationData.endereco.cidade" id="cidade" name="cidade" required>
                 <option disabled value="">Selecione uma cidade</option>
                 <option value="Amazonas">Amazonas</option>
@@ -115,6 +111,11 @@
                 <option value="RiodeJaneiro">Rio de Janeiro</option>
               </select>
             </div>
+
+              <div class="input-group-ong">
+                <input type="text" v-model="donationData.quantidade" id="quantidade" name="quantidade" placeholder="Quantidade" required>
+              </div>
+          
               <div class="input-group-ong">
                 <input type="text" v-model="donationData.endereco.numero" id="numero" name="numero" placeholder="numero" required>
               </div>

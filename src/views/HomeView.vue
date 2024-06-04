@@ -231,11 +231,12 @@ export default {
     })
   },
     registerDoador() {
+      
+      this.cadastroMessage = null;
       if (!this.validarCPF(this.doadorData.cpf)) {
         this.cadastroMessage = 'CPF inválido';
         return;
       }
-      this.cadastroMessage =
       apiClient.post('/auth/login', this.loginData, {
                   headers: {
                   'Content-Type': 'application/json',
@@ -305,6 +306,8 @@ export default {
           })
           .then(response => {
                  this.part2=true;
+                 
+      this.cadastroMessage = null;
                     
       })
                .catch(error => {
