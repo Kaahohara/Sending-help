@@ -56,6 +56,7 @@
     },
    
     computed: {
+      
       filteredDonation() {
         return this.donation.filter(donation => donation.cpf && donation.cpf === localStorage.getItem('cpf'));
       }
@@ -64,7 +65,11 @@
       this.fetchDonation();
     },
     methods: {
+      
       verificalogado(){
+        if(!!localStorage.getItem('token')){
+        this.$router.push('/');
+      }
         return !!localStorage.getItem('token');
       },
   

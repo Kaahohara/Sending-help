@@ -163,8 +163,8 @@ export default {
       donationData: {
         tipo: '',
         cpf:'',
-        previsao:'',
-        emissao:'',
+        previsao:{},
+        emissao:{},
         quantidade: 0,
         endereco:{
         cep: '',
@@ -172,7 +172,7 @@ export default {
         cidade: '',
         rua: '',
         bairro: '',
-        numero: '',
+        numero: 0,
      
         }
       },
