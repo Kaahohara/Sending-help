@@ -56,10 +56,10 @@
               <form @submit.prevent="registerUser">
              
                 <div class="input-group">
-                  <input type="email" v-model="registerData.login" placeholder="Username" required>
+                  <input type="email" v-model="loginData.login" placeholder="Username" required>
                 </div>
                 <div class="input-group">
-                  <input type="password" v-model="registerData.password" placeholder="Password" required>
+                  <input type="password" v-model="loginData.password" placeholder="Password" required>
                 </div>
                
 
@@ -235,6 +235,7 @@ export default {
         this.cadastroMessage = 'CPF inválido';
         return;
       }
+      this.cadastroMessage =
       apiClient.post('/auth/login', this.loginData, {
                   headers: {
                   'Content-Type': 'application/json',
@@ -247,7 +248,12 @@ export default {
                     
                   
                     this.doadorData.email =localStorage.getItem('login');
-                   
+                    if (this.doadorData.nomeCompleto.length <= 11) {
+                        this.cadastroMessage='Insira o nome completo';
+                       
+                    }
+                    if (this.doadorData.nomeCompleto.length > 11) {
+ 
                     apiClient.post('/doador', this.doadorData, {
                       headers: {
                         'Content-Type': 'application/json',
@@ -275,23 +281,32 @@ export default {
                               }
                                 })
                  
-            })
+            
+          } 
+         
+        })
+        
             .catch(error => {
               if (error.response) {
                                   this.cadastroMessage = 'CPF já cadastrado';
                               } else {
                                   this.cadastroMessage = 'Tente Novamente';
                               }
+                  
                   })
     },
     registerUser() {
       
-          apiClient.post('/auth/register', this.registerData, {
+          apiClient.post('/auth/register', this.loginData, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': '*/*'
             }
           })
+          .then(response => {
+                 this.part2=true;
+                    
+      })
                .catch(error => {
                   if (error.response ) {
                     this.cadastroMessage = 'E-mail já cadastrado';
@@ -299,12 +314,7 @@ export default {
                     this.cadastroMessage = 'Tente Novamente';
                   }
                 })
-                .then(response => {
-                 this.part2=true;
-                           
-              
-      
-      });
+                
     },
   
 

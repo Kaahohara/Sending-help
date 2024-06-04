@@ -12,16 +12,13 @@
               <p style="color: red; font-size: large; text-align: center;">{{cadastroMessage}}</p>
         <div class="ong-container">
          <div class="lados">
-            <img src="@/assets/profile.png" style="margin: auto" height="60%" width="80%" alt="profile">
             <div class="input-group-ong">
               <input type="text" v-model="pontoData.nome" id="nome" name="nome" placeholder="Nome do ponto de coleta:" required>
             </div>
             <div class="input-group-ong">
               <input type="tel" v-model="pontoData.telefone" id="telefone" name="telefone" placeholder="Telefone:" required>
             </div>
-          </div>
-
-          <div class="lados">
+        
          
             <div class="input-group-ong">
           <select v-model="pontoData.endereco.cidade" id="cidade" name="cidade" required>
