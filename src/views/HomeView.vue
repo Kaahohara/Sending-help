@@ -178,24 +178,20 @@ export default {
     
         this.doadorData.email = this.registerData.login;
 
-          apiClient.get('/doadores', {
+          apiClient.get('/doador', {
             headers: {
               'Content-Type': 'application/json',
               'Accept': '*/*',
               'Authorization': `Bearer ${authToken}`
             }
           })
-            .then(response => {
+          .then(response => {
               this.loginMessage = null;
-              const doadores = response.data.filter(doador => doador.email === this.loginData.login);
-              if (doadores.length > 0) {
-                const primeiroDoador = doadores[0];
-                localStorage.setItem('nome', primeiroDoador.name);
-                localStorage.setItem('cpf', primeiroDoador.cpf);
-                window.location.reload();
-              } else {
-                this.loginMessage = false;
-              }
+              const doadores = response.data;
+              const primeiroDoador = doadores[0];
+              localStorage.setItem('nome', primeiroDoador.name);
+              localStorage.setItem('cpf', primeiroDoador.cpf);
+              window.location.reload();
             })
             .catch(error => {
               this.loginMessage = false;
