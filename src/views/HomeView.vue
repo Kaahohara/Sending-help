@@ -248,7 +248,7 @@ export default {
                     const authToken = response.data.token;
                     
                   
-                    this.doadorData.email =localStorage.getItem('login');
+                    this.doadorData.email = this.loginData.login
                     if (this.doadorData.nomeCompleto.length <= 11) {
                         this.cadastroMessage='Insira o nome completo';
                        
