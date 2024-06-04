@@ -216,10 +216,10 @@ export default {
                         this.loginMessage = true;
                         this.hasLogin=false;
                       }else{
-                        localStorage.setItem('nome', this.doadorData.nomeCompleto);
-                        localStorage.setItem('cpf', this.doadorData.cpf);
-                      localStorage.setItem('token', authToken);
-                      this.loginMessage = true;  
+                        localStorage.setItem('nome', doadores[0].nomeCompleto);
+                        localStorage.setItem('cpf',doadores[0].cpf);
+                        localStorage.setItem('token', authToken);
+                     
                       this.$router.push('/doador-doar');
                     }
                     })

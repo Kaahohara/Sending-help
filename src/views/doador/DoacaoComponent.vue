@@ -191,16 +191,16 @@ export default {
   
     
     registerDonation() {
-      if(this.donationData.cidade=='Amazonas'){
-        this.donationData.estado='AM',
-        this.donationData.cep='12345678'
+      if(this.donationData.endereco.cidade=='Amazonas'){
+        this.donationData.endereco.estado='AM',
+        this.donationData.endereco.cep='12345678'
       }else   
-      if(this.donationData.cidade=='RiodeJaneiro'){
-        this.donationData.estado='RJ',
-        this.donationData.cep='44445678'
+      if(this.donationData.endereco.cidade=='RiodeJaneiro'){
+        this.donationData.endereco.estado='RJ',
+        this.donationData.endereco.cep='44445678'
       }
       else{
-        this.donationData.estado='MG',
+        this.donationData.endereco.estado='MG',
         this.donationData.cep='876678'
       }
       this.donationData.emissao = new Date();
