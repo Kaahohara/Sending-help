@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     filteredPontos() {
-      return this.pontos.filter(ponto => ponto.endereco && ponto.endereco.cidade === 'Amazonas');
+      return this.pontos;
     }
   },
   mounted() {

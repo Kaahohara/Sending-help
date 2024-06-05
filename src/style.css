@@ -181,7 +181,17 @@
     flex-direction: row-reverse;
     font-size: 15px;
   }
-
+.container-entrega{
+  background-color: #1F3925;
+display: flex;
+padding: 4%;
+}
+.box-entrega{
+flex:1;
+background-color: #D9D9D9;
+padding: 2%;
+width: 90%;
+}
   .box-itens {
     padding: 5%;
       flex: 1;

@@ -91,6 +91,7 @@
           <div class="doacao-container">
            
             <form @submit.prevent="registerDonation">
+              {{ cadastroMessage }}
               <p class="subtitulo">
                 Cadastre sua Doação
               </p>
@@ -106,6 +107,14 @@
             <div class="input-group-ong">
               <select v-model="donationData.endereco.cidade" id="cidade" name="cidade" required>
                 <option disabled value="">Selecione uma cidade</option>
+                <option value="Manaus">Manaus</option>
+                <option value="Paraibinha">Paraibinhao</option>
+                <option value="Santos">Santos</option>
+              </select>
+            </div>
+            <div class="input-group-ong">
+              <select v-model="donationData.endereco.estado" id="estado" name="estado" required>
+                <option disabled value="">Selecione uma estado</option>
                 <option value="Amazonas">Amazonas</option>
                 <option value="Mato Grosso">Mato Grosso</option>
                 <option value="RiodeJaneiro">Rio de Janeiro</option>
@@ -185,11 +194,12 @@ export default {
   
  
   methods: {
+   
     verificalogado(){
       return !!localStorage.getItem('token');
     },
 
-  
+   
     
     registerDonation() {
       if(this.donationData.endereco.cidade=='Amazonas'){
@@ -208,6 +218,11 @@ export default {
       this.donationData.previsao = new Date(this.donationData.emissao);
       this.donationData.previsao.setDate(this.donationData.emissao.getDate() + 7);
 
+      if(this.donationData.quantidade<=0){
+        this.cadastroMessage= "Dõe pelo menos 1 item";
+      }else if(this.donationData.endereco.numero<=0){
+        this.cadastroMessage= "Insira um número real";
+      }else{
           const authToken = localStorage.getItem('token');
           this.donationData.cpf=localStorage.getItem('cpf');
           apiClient.post('/donation', this.donationData, {
@@ -217,12 +232,14 @@ export default {
               'Authorization': `Bearer ${authToken}`
             }
           })
-         
+         .then(response=>{
+          this.$router.push('/doador-doacao');
+         })
           .catch(error => {
             if(error)
             this.cadastroMessage = 'Falha ao registrar a doação';
           });
-        },
+        }},
         
         submitForm() {
       apiClient.post('/auth/login', this.loginData, {
@@ -262,7 +279,7 @@ export default {
       .catch(error => {
         this.loginMessage = false;
       });
-    },
+    }},
     
     registerUser() {
       apiClient.post('/auth/register', this.registerData, {
@@ -311,5 +328,5 @@ export default {
       this.hasLogin = !this.hasLogin;
     }
   }
-}
+
 </script>

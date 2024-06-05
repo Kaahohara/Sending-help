@@ -269,7 +269,7 @@ export default {
                               localStorage.setItem('nome', this.doadorData.nomeCompleto);
                               localStorage.setItem('cpf', this.doadorData.cpf);
                               localStorage.setItem('token', authToken);
-                              window.location.reload();
+                              this.$router.push('/doador-doar');
                             }else{
                               this.cadastroMessage = 'CPF já cadastrado';
                             }

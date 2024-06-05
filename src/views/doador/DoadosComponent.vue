@@ -67,11 +67,11 @@
     methods: {
       
       verificalogado(){
-        if(!!localStorage.getItem('token')){
-        this.$router.push('/');
-      }
-        return !!localStorage.getItem('token');
-      },
+      if ((!localStorage.getItem('token'))) {
+      this.$router.push('/');
+    }else{
+      return !!localStorage.getItem('token');
+    }},
   
    
           

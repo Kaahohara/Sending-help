@@ -43,6 +43,18 @@ const router = createRouter({
 						component: () => import('@/views/administrador/PontosComponent.vue')
 					},
 				]
+				},
+				{
+					path: '/coletor',
+				name: 'Coletor',
+				children: [
+					
+					{
+						path: '/coletor-entregas',
+						name: 'Coletor-entregas',
+						component: () => import('@/views/coletor/ColetorComponent.vue')
+					},
+				]
 				}
 			
 

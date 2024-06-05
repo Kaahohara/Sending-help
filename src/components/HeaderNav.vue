@@ -25,20 +25,21 @@
 						Pontos de coleta
 			</router-link>
 		</li>
-		<li>
-			<router-link
-						to="/doador-doacao"
-					>
-						<Doador-doacao />
-						Suas Doações
-			</router-link>
-		</li>
+	
         <li>
 			<router-link
 						to="/doador-doar"
 					>
 						<Doador-doar />
 						Doação
+			</router-link>
+		</li>
+		<li v-if="verificalogado()">
+			<router-link
+						to="/doador-doacao"
+					>
+						<Doador-doacao />
+						Suas Doações
 			</router-link>
 		</li>
 		<li v-if="verificalogado()">
