@@ -308,6 +308,8 @@ width: 90%;
       padding-left: 5%;
       padding-top: 9%;
       padding-bottom:9%;
+      background-size: cover;
+  background-position: center;
       padding-right: 5%;
       background-repeat: no-repeat;
     }
@@ -354,9 +356,12 @@ width: 90%;
   }
 
   .fundoWood {
-     background-image:  url('assets/floresta.png');
+    background-size: cover;
+    background-position: center;
+      background-image:  url('assets/floresta.png');
       height: 700px;
       width: 100%;
+      background-repeat: no-repeat;
     }
 
     .fundoWood .frase{
@@ -513,6 +518,8 @@ width: 90%;
       padding-left: 10%;
       padding-top: 9%;
       padding-bottom:9%;
+      background-size: cover;
+      background-position: center;
       padding-right: 10%;
       color: #fff;
     }

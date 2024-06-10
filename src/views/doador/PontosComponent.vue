@@ -2,13 +2,10 @@
   <div>
 
 
-
-   
-    
     <div class="containerong">
         <div v-for="ponto in filteredPontos" :key="ponto.id" class="containerong-item">
         <div class="picture">
-          <img src='@/assets/Amazonia.png' alt="ongimage">
+          <img src='@/assets/Amazonia.png' alt="ong">
         </div>
         <div class="nameong">
           <p>{{ ponto.nome }}</p>
