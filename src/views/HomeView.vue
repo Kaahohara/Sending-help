@@ -298,7 +298,7 @@ export default {
     },
     registerUser() {
       
-          apiClient.post('/auth/register', this.loginData, {
+          apiClient.post('/auth/register',{ ...this.loginData, role:"ADMIN"}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': '*/*'

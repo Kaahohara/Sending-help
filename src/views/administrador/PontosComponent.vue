@@ -40,7 +40,6 @@
             </div>
             <button type="submit">Registrar</button>
             <br>
-            <a style="color: aliceblue;" @click="toggleForm">Já tem uma conta? Faça login</a>
           </div>
         </div>
       </form>
