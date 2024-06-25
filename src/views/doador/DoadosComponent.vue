@@ -12,7 +12,7 @@
             <p> Pedido feito no dia:{{ donation.emissao }}</p>
             <p>Previsão:{{ donation.previsao }}</p>
             <p>Endereço:{{ donation.endereco.rua }}, nº {{ donation.endereco.numero }}, {{ donation.endereco.cidade }}, cep: {{ donation.endereco.cep }}.  </p>
-        
+            <p>Status:{{ donation.status }}</p>
           </div>
         </div>
       </div>

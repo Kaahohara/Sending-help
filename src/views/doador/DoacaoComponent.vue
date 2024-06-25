@@ -176,6 +176,7 @@ export default {
       donationData: {
         tipo: '',
         cpf:'',
+        status:'Pendente',
         previsao:{},
         emissao:{},
         quantidade: 0,
@@ -264,6 +265,7 @@ export default {
             if(error)
             this.cadastroMessage = 'Falha ao registrar a doação';
           });
+         
         }},
         
        
@@ -381,7 +383,7 @@ export default {
     },
     registerUser() {
       
-          apiClient.post('/auth/register',{ ...this.loginData, role:"ADMIN"}, {
+          apiClient.post('/auth/register',{ ...this.loginData, role:"DONOR"}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': '*/*'

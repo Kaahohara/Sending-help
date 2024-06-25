@@ -125,7 +125,7 @@ export default {
       registerData: {
         login: '',
         password: '',
-        role: 'ADMIN'
+        role: 'DONOR'
       },
       loginRegisterData:{
         login: '',
@@ -203,9 +203,8 @@ export default {
                   headers: {
                     'Content-Type': 'application/json',
                     'Accept': '*/*',
-                    'Authorization': `Bearer ${authToken}`
-                  }
-                })
+                   'Authorization': `Bearer ${authToken}`
+                  }})
                   .then(response => {
                       this.loginMessage = null;
                       
@@ -224,10 +223,9 @@ export default {
                     }
                     })
        
-    })
-    .catch(error => {
+    }).catch(error => {
                
-                      this.loginMessage = false;
+    this.loginMessage = false;
     })
   },
     registerDoador() {
@@ -285,9 +283,7 @@ export default {
             
           } 
          
-        })
-        
-            .catch(error => {
+        }).catch(error => {
               if (error.response) {
                                   this.cadastroMessage = 'CPF já cadastrado';
                               } else {
@@ -298,7 +294,7 @@ export default {
     },
     registerUser() {
       
-          apiClient.post('/auth/register',{ ...this.loginData, role:"ADMIN"}, {
+          apiClient.post('/auth/register',{ ...this.loginData, role:"DONOR"}, {
             headers: {
               'Content-Type': 'application/json',
               'Accept': '*/*'

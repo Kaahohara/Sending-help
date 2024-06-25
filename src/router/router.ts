@@ -42,6 +42,11 @@ const router = createRouter({
 						name: 'Administrador-pontos',
 						component: () => import('@/views/administrador/PontosComponent.vue')
 					},
+					{
+						path: '/administrador-coletor',
+						name: 'Administrador-coletor',
+						component: () => import('@/views/administrador/CadastroColetor.vue')
+					},
 				]
 				},
 				{
