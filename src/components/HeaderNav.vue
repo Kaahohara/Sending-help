@@ -26,7 +26,7 @@
 			  Cadastrar Coletor
 			</router-link>
 		  </li>
-		  <li v-if="verificalogado() && hasPermission('COLETOR')&& hasPermission('ADMIN')">
+		  <li v-if="verificalogado() && hasPermission('COLETOR') || hasPermission('ADMIN')">
 			<router-link to="/coletor-entregas">
 			  <ColetorEntregas />
 			  Entregas 

@@ -1,18 +1,21 @@
 <template>
     <div>
   
-      <div class="containerong">
-          <div v-for="donation in filteredDonation" :key="donation.id" class="containerong-item">
+      <div class="containerong" >
+          <div v-for="donation in filteredDonation" :key="donation.id" class="containerong-item" :style="{ backgroundColor: donation.status === 'CANCELADA' ? 'red' : '' }">
           <div class="picture">
             <img src='@/assets/Amazonia.png' alt="ongimage">
           </div>
           <div class="nameong">
             <p>Tipo: {{ donation.tipo }}</p>
-            <p>{{ donation.nome }}  {{ donation.quantidade }}</p>
+            <p>Quantidade: {{ donation.nome }}  {{ donation.quantidade }}</p>
             <p> Pedido feito no dia:{{ donation.emissao }}</p>
             <p>Previsão:{{ donation.previsao }}</p>
             <p>Endereço:{{ donation.endereco.rua }}, nº {{ donation.endereco.numero }}, {{ donation.endereco.cidade }}, cep: {{ donation.endereco.cep }}.  </p>
             <p>Status:{{ donation.status }}</p>
+            <div v-if="donation.status!='CANCELADA'">
+            <button style="background-color: red;" @click="updateStatus(donation.codigo)">Cancelar</button>
+            </div>
           </div>
         </div>
       </div>
@@ -65,7 +68,24 @@
       this.fetchDonation();
     },
     methods: {
-      
+      updateStatus(id) {
+        const authToken = localStorage.getItem('token'); 
+      apiClient.put(`/donation/${id}`, {
+        "status": "CANCELADA"
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': '*/*',
+          'Authorization': `Bearer ${authToken}`
+        }
+      })
+      .then(response => {
+        donation.status = newStatus;
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar status:', error);
+      });
+    },
       verificalogado(){
       if ((!localStorage.getItem('token'))) {
       this.$router.push('/');

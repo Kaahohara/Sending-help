@@ -176,7 +176,7 @@ export default {
       donationData: {
         tipo: '',
         cpf:'',
-        status:'Pendente',
+        STATUS:'Pendente',
         previsao:{},
         emissao:{},
         quantidade: 0,
@@ -199,7 +199,7 @@ export default {
       registerData: {
         login: '',
         password: '',
-        role: 'ADMIN'
+        role: 'DONOR'
       },
       loginRegisterData:{
         login: '',
@@ -258,14 +258,16 @@ export default {
               'Authorization': `Bearer ${authToken}`
             }
           })
-         .then(response=>{
+        
+         .then(response=>{    
+         
           this.$router.push('/doador-doacao');
          })
           .catch(error => {
             if(error)
             this.cadastroMessage = 'Falha ao registrar a doação';
           });
-         
+          
         }},
         
        

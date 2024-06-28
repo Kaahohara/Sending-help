@@ -17,7 +17,6 @@
             <div class="input-group-ong">
               <input type="date" v-model="coletorData.dataNascimento" id="dataNascimento" name="dataNascimento" placeholder="Data de Nascimento:" required>
             </div>
-           
             <div class="input-group-ong">
               <input type="email" v-model="coletorData.email" id="email" name="email" placeholder="Email:" required>
             </div>
@@ -44,7 +43,6 @@
         <div class="nameong">
           <p>{{ coletor.nomeCompleto }} {{ coletor.cpf }} {{ coletor.email }} {{ coletor.dataNascimento }}</p>
           <p>{{ coletor.telefoneContato }} {{ coletor.pontoColeta }}</p>
-        
         </div>
       </div>
     </div>
@@ -104,61 +102,119 @@ export default {
     this.fetchCentro();
   },
   methods: {
+    validarCPF(cpf) {
+      cpf = String(cpf).replace(/[^\d]+/g, '');
+      if (cpf === '') return false;
+
+      if (cpf.length !== 11 ||
+        cpf === "00000000000" ||
+        cpf === "11111111111" ||
+        cpf === "22222222222" ||
+        cpf === "33333333333" ||
+        cpf === "44444444444" ||
+        cpf === "55555555555" ||
+        cpf === "66666666666" ||
+        cpf === "77777777777" ||
+        cpf === "88888888888" ||
+        cpf === "99999999999")
+        return false;
+
+      let add = 0;
+      for (let i = 0; i < 9; i++)
+        add += parseInt(cpf.charAt(i)) * (10 - i);
+      let rev = 11 - (add % 11);
+      if (rev === 10 || rev === 11)
+        rev = 0;
+      if (rev !== parseInt(cpf.charAt(9)))
+        return false;
+
+      add = 0;
+      for (let i = 0; i < 10; i++)
+        add += parseInt(cpf.charAt(i)) * (11 - i);
+      rev = 11 - (add % 11);
+      if (rev === 10 || rev === 11)
+        rev = 0;
+      if (rev !== parseInt(cpf.charAt(10)))
+        return false;
+
+      return true;
+    },
     verificalogado() {
       return !!localStorage.getItem('token');
     },
     async registerColetor() {
-      if (this.coletorData.telefoneContato.length > 11) {
-        this.cadastroMessage = 'O telefone deve ter no máximo 11 dígitos.';
-        return;
-      }
-
-      try {
-        const authToken = localStorage.getItem('token');
+    
+        try {
+          const authToken = localStorage.getItem('token');
         
-        const existingColetor = await apiClient.get('/coletor', {
-          params: {
-            email: this.coletorData.email,
-            cpf: this.coletorData.cpf
-          },
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': '*/*',
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
+          const existingColetor = await apiClient.get('/coletor', {
+            params: {
+              email: this.coletorData.email,
+              cpf: this.coletorData.cpf
+            },
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': '*/*',
+              'Authorization': `Bearer ${authToken}`
+            }
+          });
 
-        if (existingColetor.data.exists) {
-          this.cadastroMessage = 'Coletor com este email ou CPF já está registrado.';
+          if (existingColetor.data.exists) {
+            this.cadastroMessage = 'Coletor com este email ou CPF já está registrado.';
+            return;
+          }
+       
+        if (this.coletorData.telefoneContato.length > 11) {
+          this.cadastroMessage = 'O telefone deve ter no máximo 11 dígitos.';
           return;
         }
-
-        await apiClient.post('/auth/register', {
-          login: this.coletorData.email,
-          password: "123",
-          role: "COLETOR"
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': '*/*'
-          }
-        });
-
-        await apiClient.post('/coletor', this.coletorData,  {
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': '*/*',
-            'Authorization': `Bearer ${authToken}`
-          }
-        });
-
-        this.cadastroMessage = 'Coletor registrado com sucesso';
-        this.fetchColetor();
-      } catch (error) {
-        this.cadastroMessage = 'Falha ao registrar o Coletor/Telefone já registrado';
-        console.error('Erro ao registrar coletor:', error);
+        if (!this.validarCPF(this.coletorData.cpf)) {
+        this.cadastroMessage = 'CPF inválido';
+        return;
+      }if (this.coletorData.nomeCompleto.length < 11) {
+        this.cadastroMessage = 'O nome deve ter no minimo 11 dígitos.';
+        return;
       }
-    },
+          await apiClient.post('/auth/register', {
+            login: this.coletorData.email,
+            password: "123",
+            role: "COLETOR"
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': '*/*'
+            }
+          });
+
+          await apiClient.post('/auth/login', {
+            login: this.coletorData.email,
+            password: "123"
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': '*/*'
+            }
+          }).then(response => {
+            const ColetorToken = response.data.token;
+            localStorage.setItem('tokenColetor', ColetorToken);
+          });
+
+          const tokenColetor = localStorage.getItem('tokenColetor');
+          await apiClient.post('/coletor', this.coletorData,  {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': '*/*',
+              'Authorization': `Bearer ${tokenColetor}`
+            }
+          });
+
+          this.cadastroMessage = 'Coletor registrado com sucesso';
+          this.fetchColetor();
+        } catch (error) {
+          this.cadastroMessage = 'Falha ao registrar o Coletor/Telefone já registrado';
+          console.error('Erro ao registrar coletor:', error);
+        }
+      },
     fetchColetor() {
       const authToken = localStorage.getItem('token');
       apiClient.get('/coletor', {
