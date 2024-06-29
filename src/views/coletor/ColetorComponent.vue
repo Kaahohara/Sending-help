@@ -1,14 +1,16 @@
 <template>
   <div>
-    <div class="container-entrega">
+    <div class="container-entrega" v-if="donations.length">
       <div class="box-entrega" v-for="donation in donations" :key="donation.codigo"  :style="{ backgroundColor: getBackgroundColor(donation.status) }">
         <p>Tipo da Entrega: {{ donation.tipo }}</p>
         <p><strong> Endereço: {{ donation.endereco.rua }}, nº {{ donation.endereco.numero }}, {{ donation.endereco.cidade }}, cep: {{ donation.endereco.cep }}. </strong></p>
         <p><strong>Status:</strong> {{ donation.status }}</p>
         <button @click="updateStatus(donation.codigo)">Atualizar Status</button>
       </div>
-   
-  </div>
+    </div>
+    <div v-else class="no-deliveries">
+      Nenhuma entrega encontrada.
+    </div>
     <div class="cont">
       <div class="lados">
         <img src="@/assets/logo.png" width="200px" alt="logo">
@@ -120,3 +122,11 @@ export default {
   }
 }
 </script>
+<style>
+.no-deliveries {
+  height: 500px;
+  text-align: center;
+  color: red;
+  font-size: 28px;
+}
+</style>

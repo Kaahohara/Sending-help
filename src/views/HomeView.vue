@@ -22,24 +22,24 @@
         </p>
       </div>
       <div class="box">
-        <p class="titulo">SOS Mata Atlântica</p>
-        <p>Objetivos: texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo</p>
+        <p class="titulo">Centro de Educação Profissional São João Calábria</p>
+        <p>Possui atualmente 42 unidades distribuidas nas cidades em que aatuam, com elo de ligação, coloboração, aprendizado e comunhão instituicional entre as atividades</p>
       </div>
     </div>
 
     <div class="container-image">
       <div class="box">
-        <p class="titulo">SOS Mata Atlântica</p>
-        <p>Objetivos: texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo</p>
+        <p class="titulo">Metas</p>
+        <p>* 5 mil kilos dde alimentos não perecíveis.</p>
+        <p>*   50 mil doações de roupas para a temporada de frio.</p>
       </div>
       <div class="box">
-        <p class="titulo">SOS Mata Atlântica</p>
-        <p>Objetivos: texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo</p>
-      </div>
-      <div class="box">
-        <p class="titulo">SOS Mata Atlântica</p>
-        <p>Objetivos: texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo texto de exemplo</p>
-      </div>
+        <p class="titulo">Como você pode nos ajudar?</p>
+        <p>Se cadastre e dõe para o centro de coleta, mais próximo de você!</p>
+        <p>Qualquer item já faz a diferença!</p>
+        <p>Um de nossos coletores irá receber diretamente em sua residência</p>
+        </div>
+    
     </div>
 
     <div v-if="!verificalogado()">

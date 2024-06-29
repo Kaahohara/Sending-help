@@ -30,6 +30,11 @@ const router = createRouter({
 					name: 'Doador-doacao',
 					component: () => import('@/views/doador/DoadosComponent.vue')
 				},
+				{
+					path: '/doador-centro',
+					name: 'Doador-Centro',
+					component: () => import('@/views/doador/PontosComponent.vue')
+				},
 			],
 				},
 				{
@@ -41,6 +46,11 @@ const router = createRouter({
 						path: '/administrador-pontos',
 						name: 'Administrador-pontos',
 						component: () => import('@/views/administrador/PontosComponent.vue')
+					},
+					{
+						path: '/administrador-relatorio',
+						name: 'Administrador-relatorio',
+						component: () => import('@/views/administrador/RelatoriosComponent.vue')
 					},
 					{
 						path: '/administrador-coletor',

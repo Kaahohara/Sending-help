@@ -4,7 +4,9 @@
       <form @submit.prevent="registerPonto">
         <p style="color: red; font-size: large; text-align: center;">{{ cadastroMessage }}</p>
         <div class="ong-container">
+      
           <div class="lados">
+            <p style="text-align: center; font-size: 35px;">Cadastre os Centros de Coleta</p>
             <div class="input-group-ong">
               <input type="text" v-model="pontoData.nome" id="nome" name="nome" placeholder="Nome do ponto de coleta:" required>
             </div>
@@ -50,7 +52,7 @@
           <img src='@/assets/Amazonia.png' alt="ongimage">
         </div>
         <div class="nameong">
-          <p>{{ ponto.nome }}</p>
+          <p>{{ ponto.nomeUnico }}</p>
           <p>Endereço:{{ ponto.endereco.rua }}, nº {{ ponto.endereco.numero }}, {{ ponto.endereco.cidade }}, cep: {{ ponto.endereco.cep }}.  </p>
         </div>
       </div>
@@ -175,3 +177,29 @@ export default {
   }
 }
 </script>
+<style>
+
+.input-group-ong input, .input-group-ong select {
+  width: 90%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #45a049;
+}
+.ong-container{
+  margin-top: -5%;
+}
+</style>

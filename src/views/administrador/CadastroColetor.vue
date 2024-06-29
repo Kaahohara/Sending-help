@@ -5,6 +5,9 @@
         <p style="color: red; font-size: large; text-align: center;">{{ cadastroMessage }}</p>
         <div class="ong-container">
           <div class="lados">
+            <p style="text-align: center; font-size: 35px;">Cadastro de Coletor</p>
+            
+           
             <div class="input-group-ong">
               <input type="text" v-model="coletorData.nomeCompleto" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo" required>
             </div>
@@ -37,12 +40,12 @@
     </div>
     <div class="containerong" v-if="filteredColetor.length">
       <div v-for="coletor in filteredColetor" :key="coletor.id" class="containerong-item">
-        <div class="picture">
-          <img src='@/assets/Amazonia.png' alt="ongimage">
-        </div>
+      
         <div class="nameong">
-          <p>{{ coletor.nomeCompleto }} {{ coletor.cpf }} {{ coletor.email }} {{ coletor.dataNascimento }}</p>
-          <p>{{ coletor.telefoneContato }} {{ coletor.pontoColeta }}</p>
+          <p>Nome: {{ coletor.nomeCompleto }} </p>
+          <p> E-mail:{{ coletor.email }} {{ coletor.telefoneContato }}</p>
+          <p>CPF:{{ coletor.cpf }} Data Nascimento: {{ coletor.dataNascimento }}</p>
+          <p>Centro de coleta: {{ coletor.pontoColeta }}</p>
         </div>
       </div>
     </div>

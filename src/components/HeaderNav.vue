@@ -26,6 +26,12 @@
 			  Cadastrar Coletor
 			</router-link>
 		  </li>
+		  <li v-if="verificalogado() && hasPermission('ADMIN')">
+			<router-link to="/administrador-relatorio">
+			  <AdministradorRelatorio/>
+			  Relatórios
+			</router-link>
+		  </li>
 		  <li v-if="verificalogado() && hasPermission('COLETOR') || hasPermission('ADMIN')">
 			<router-link to="/coletor-entregas">
 			  <ColetorEntregas />
@@ -39,7 +45,13 @@
 			  Doação
 			</router-link>
 		  </li>
-		  <li v-if="verificalogado()">
+		  <li>
+			<router-link to="/doador-centro">
+			  <DoadorCentro />
+			  Centros de doações
+			</router-link>
+		  </li>
+		  <li v-if="verificalogado() && hasPermission('DONOR') ">
 			<router-link to="/doador-doacao">
 			  <DoadorDoacao />
 			  Suas Doações
