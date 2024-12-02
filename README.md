@@ -1,4 +1,4 @@
-# donation-fron-end
+# donation-front-end
 
 ## Project setup
 ```
