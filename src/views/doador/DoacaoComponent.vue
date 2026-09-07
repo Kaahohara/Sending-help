@@ -1,110 +1,80 @@
 <template>
-  <div class="background">
-    <div class="faixa">
-      <p>O QUE DOAR?</p>
+  <UnderlineTitle title="O que " description="Doe ...." underlineText="doar?" />
+  <GalleryGrid></GalleryGrid>
+  <FormCard buttonText="Enviar" title="Cadastrar doações">
+    <div>
+      <label for="tipo" class="block mb-1.5 text-sm font-medium text-slate-700">Tipo de Doação</label>
+      <select v-model="donationData.tipo" id="tipo" required 
+        class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm outline-none transition-all">
+        <option disabled value="">Selecione um tipo de doação</option>
+        <option value="Alimentos">Alimentos não perecíveis</option>
+        <option value="Cobertores">Cobertores</option>
+        <option value="Roupas">Roupas</option>
+        <option value="Higiene">Higiene</option>
+      </select>
     </div>
-    <div class="container-itens">
-      <div class="lados">
-        <div class="box-itens">
-          <img src="@/assets/coberta.png">
-          <p>Cobertores</p>
-        </div>
-      </div>
-      <div class="lados">
-        <div class="box-itens">
-          <img src="@/assets/roupa.png">
-          <p>Roupas</p>
-        </div>
-      </div>
+
+    <!-- Cidade -->
+    <div>
+      <label for="cidade" class="block mb-1.5 text-sm font-medium text-slate-700">Cidade</label>
+      <select v-model="donationData.endereco.cidade" id="cidade" required 
+        class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm outline-none transition-all">
+        <option disabled value="">Selecione uma cidade</option>
+        <option value="Manaus">Manaus</option>
+        <option value="Paraibinha">Paraibinha</option>
+        <option value="Santos">Santos</option>
+      </select>
     </div>
-    <div class="container-itens">
-      <div class="lados">
-        <div class="box-itens">
-          <img src="@/assets/higiene.png">
-          <p>Itens de higiene</p>
-        </div>
+
+    <!-- Estado -->
+    <div>
+      <label for="estado" class="block mb-1.5 text-sm font-medium text-slate-700">Estado</label>
+      <select v-model="donationData.endereco.estado" id="estado" required 
+        class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm outline-none transition-all">
+        <option disabled value="">Selecione um estado</option>
+        <option value="Amazonas">Amazonas</option>
+        <option value="Mato Grosso">Mato Grosso</option>
+        <option value="Rio de Janeiro">Rio de Janeiro</option>
+      </select>
+    </div>
+
+    <!-- Quantidade -->
+    <div>
+      <label for="quantidade" class="block mb-1.5 text-sm font-medium text-slate-700">Quantidade</label>
+      <input type="text" v-model="donationData.quantidade" id="quantidade" placeholder="Ex: 5 caixas / 10 kg" required 
+        class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm placeholder:text-slate-400 outline-none transition-all" />
+    </div>
+
+    <!-- Grid para Endereço -->
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label for="rua" class="block mb-1.5 text-sm font-medium text-slate-700">Rua</label>
+        <input type="text" v-model="donationData.endereco.rua" id="rua" placeholder="Nome da rua" required 
+          class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm placeholder:text-slate-400 outline-none transition-all" />
       </div>
-      <div class="lados">
-        <div class="box-itens">
-          <img src="@/assets/alimentos.png">
-          <p>Alimentos não perecíveis</p>
-        </div>
-      </div>
-    </div> 
-
-    
-
-    <div >
-
-    <div class="form-doacao">
-      <div class="box-form">
-        <img class="lados-doacao" src="@/assets/roupa.png" alt="logo"/>
-        <div class="lados-doacao back-whitegreen">
-          <div class="doacao-container">
-            <div v-if="!verificalogado()" class="aviso">
-            Por favor, faça login para cadastrar sua doação.<br>
-              <router-link to="/">Ir para a página de login</router-link>
-            </div>
-            <form @submit.prevent="registerDonation">
-              {{ cadastroMessage }}
-              <p class="subtitulo" style="color: white;">
-                Cadastre sua Doação
-              </p>
-              <div class="input-group-ong">
-              <select  v-model="donationData.tipo" id="tipo" name="tipo" required>
-                <option disabled value="">Selecione um tipo de doação</option>
-                <option value="Alimentos">Alimentos não perecíveis</option>
-                <option value="Cobertores">Cobertores</option>
-                <option value="Roupas">Roupas</option>
-                <option value="Higiene">Higiene</option>
-              </select>
-            </div>
-            <div class="input-group-ong">
-              <select v-model="donationData.endereco.cidade" id="cidade" name="cidade" required>
-                <option disabled value="">Selecione uma cidade</option>
-                <option value="Manaus">Manaus</option>
-                <option value="Paraibinha">Paraibinhao</option>
-                <option value="Santos">Santos</option>
-              </select>
-            </div>
-            <div class="input-group-ong">
-              <select v-model="donationData.endereco.estado" id="estado" name="estado" required>
-                <option disabled value="">Selecione uma estado</option>
-                <option value="Amazonas">Amazonas</option>
-                <option value="Mato Grosso">Mato Grosso</option>
-                <option value="RiodeJaneiro">Rio de Janeiro</option>
-              </select>
-            </div>
-
-              <div class="input-group-ong">
-                <input type="text" v-model="donationData.quantidade" id="quantidade" name="quantidade" placeholder="Quantidade" required>
-              </div>
-          
-              <div class="input-group-ong">
-                <input type="text" v-model="donationData.endereco.numero" id="numero" name="numero" placeholder="numero" required>
-              </div>
-              <div class="input-group-ong">
-                <input type="text" v-model="donationData.endereco.bairro" id="Bairro" name="Bairro" placeholder="Bairro" required>
-              </div>
-              <div class="input-group-ong">
-                <input type="text" v-model="donationData.endereco.rua" id="Rua" name="Rua" placeholder="Rua" required>
-              </div>
-
-              
-              <button type="submit">Enviar</button>
-            </form>
-          </div>
-        </div>
+      <div>
+        <label for="numero" class="block mb-1.5 text-sm font-medium text-slate-700">Número</label>
+        <input type="text" v-model="donationData.endereco.numero" id="numero" placeholder="Nº" required 
+          class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm placeholder:text-slate-400 outline-none transition-all" />
       </div>
     </div>
-  </div>
-</div>
 
-
+    <div>
+      <label for="bairro" class="block mb-1.5 text-sm font-medium text-slate-700">Bairro</label>
+      <input type="text" v-model="donationData.endereco.bairro" id="bairro" placeholder="Nome do bairro" required 
+        class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full px-3.5 py-2.5 shadow-sm placeholder:text-slate-400 outline-none transition-all" />
+    </div>
+  </FormCard>
+<FooterCard />
 </template>
-
+<script setup>
+  import UnderlineTitle from '@/components/UnderlineTitle.vue';
+</script>
 <script>
 import apiClient from '@/axios';
+import GalleryGrid from '@/components/GalleryGrid.vue';
+import FormCard from '@/components/FormCard.vue';
+import FooterCard from '@/components/FooterCard.vue';
 
 export default {
   data() {
@@ -209,22 +179,9 @@ export default {
           });
           
         }},
-        
-       
   
   }
    
   }
 
 </script>
-<style>
-.aviso {
-  color:red;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.aviso a{
-  text-decoration: none;
-  color: azure;
-}
-</style>

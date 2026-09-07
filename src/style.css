@@ -1,10 +1,15 @@
+@import "tailwindcss";
 
-
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
   @import url('https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap');
-  * {
+  .fundoWood {
+    background-size: cover;
+    background-position: center;
+      background-image:  url('assets/floresta.png');
+      height: 700px;
+      width: 100%;
+      background-repeat: no-repeat;
+    }
+  /* * {
       margin: 0px;
       padding: 0px;
     }
@@ -375,14 +380,7 @@
     }
   }
 
-  .fundoWood {
-    background-size: cover;
-    background-position: center;
-      background-image:  url('assets/floresta.png');
-      height: 700px;
-      width: 100%;
-      background-repeat: no-repeat;
-    }
+  
 
     .fundoWood .frase{
     padding: 5%;
@@ -563,4 +561,4 @@
       margin: 30px 30px; 
       background-color: black;
     }
-  }
+  } */
